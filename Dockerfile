@@ -53,6 +53,7 @@ RUN apt-get update && apt-get install -y \
 	grub-efi-amd64-bin \
 	grub-efi-ia32-bin \
 	iasl \
+	imagemagick \
 	iputils-ping \
 	libisl15 \
 	liblz4-tool \
