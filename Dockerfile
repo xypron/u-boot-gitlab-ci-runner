@@ -15,17 +15,17 @@ RUN wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add -
 RUN echo deb http://apt.llvm.org/bionic/ llvm-toolchain-bionic-7 main | tee /etc/apt/sources.list.d/llvm.list
 
 # Manually install the kernel.org "Crosstool" based toolchains for gcc-7.3
-RUN wget -O - https://mirrors.edge.kernel.org/pub/tools/crosstool/files/bin/x86_64/7.3.0/x86_64-gcc-7.3.0-nolibc_aarch64-linux.tar.xz | tar -C /opt -xJ
-RUN wget -O - https://mirrors.edge.kernel.org/pub/tools/crosstool/files/bin/x86_64/7.3.0/x86_64-gcc-7.3.0-nolibc_arm-linux-gnueabi.tar.xz | tar -C /opt -xJ
-RUN wget -O - https://mirrors.edge.kernel.org/pub/tools/crosstool/files/bin/x86_64/7.3.0/x86_64-gcc-7.3.0-nolibc_i386-linux.tar.xz | tar -C /opt -xJ
-RUN wget -O - https://mirrors.edge.kernel.org/pub/tools/crosstool/files/bin/x86_64/7.3.0/x86_64-gcc-7.3.0-nolibc_m68k-linux.tar.xz | tar -C /opt -xJ
-RUN wget -O - https://mirrors.edge.kernel.org/pub/tools/crosstool/files/bin/x86_64/7.3.0/x86_64-gcc-7.3.0-nolibc_mips-linux.tar.xz | tar -C /opt -xJ
-RUN wget -O - https://mirrors.edge.kernel.org/pub/tools/crosstool/files/bin/x86_64/7.3.0/x86_64-gcc-7.3.0-nolibc_microblaze-linux.tar.xz | tar -C /opt -xJ
-RUN wget -O - https://mirrors.edge.kernel.org/pub/tools/crosstool/files/bin/x86_64/7.3.0/x86_64-gcc-7.3.0-nolibc_nios2-linux.tar.xz | tar -C /opt -xJ
-RUN wget -O - https://mirrors.edge.kernel.org/pub/tools/crosstool/files/bin/x86_64/7.3.0/x86_64-gcc-7.3.0-nolibc_powerpc-linux.tar.xz | tar -C /opt -xJ
-RUN wget -O - https://mirrors.edge.kernel.org/pub/tools/crosstool/files/bin/x86_64/7.3.0/x86_64-gcc-7.3.0-nolibc_riscv32-linux.tar.xz | tar -C /opt -xJ
-RUN wget -O - https://mirrors.edge.kernel.org/pub/tools/crosstool/files/bin/x86_64/7.3.0/x86_64-gcc-7.3.0-nolibc_riscv64-linux.tar.xz | tar -C /opt -xJ
-RUN wget -O - https://mirrors.edge.kernel.org/pub/tools/crosstool/files/bin/x86_64/7.3.0/x86_64-gcc-7.3.0-nolibc_sh2-linux.tar.xz | tar -C /opt -xJ
+RUN wget -O - https://mirrors.edge.kernel.org/pub/tools/crosstool/files/bin/x86_64/9.2.0/x86_64-gcc-9.2.0-nolibc-aarch64-linux.tar.xz | tar -C /opt -xJ
+RUN wget -O - https://mirrors.edge.kernel.org/pub/tools/crosstool/files/bin/x86_64/9.2.0/x86_64-gcc-9.2.0-nolibc-arm-linux-gnueabi.tar.xz | tar -C /opt -xJ
+RUN wget -O - https://mirrors.edge.kernel.org/pub/tools/crosstool/files/bin/x86_64/9.2.0/x86_64-gcc-9.2.0-nolibc-i386-linux.tar.xz | tar -C /opt -xJ
+RUN wget -O - https://mirrors.edge.kernel.org/pub/tools/crosstool/files/bin/x86_64/9.2.0/x86_64-gcc-9.2.0-nolibc-m68k-linux.tar.xz | tar -C /opt -xJ
+RUN wget -O - https://mirrors.edge.kernel.org/pub/tools/crosstool/files/bin/x86_64/9.2.0/x86_64-gcc-9.2.0-nolibc-mips-linux.tar.xz | tar -C /opt -xJ
+RUN wget -O - https://mirrors.edge.kernel.org/pub/tools/crosstool/files/bin/x86_64/9.2.0/x86_64-gcc-9.2.0-nolibc-microblaze-linux.tar.xz | tar -C /opt -xJ
+RUN wget -O - https://mirrors.edge.kernel.org/pub/tools/crosstool/files/bin/x86_64/9.2.0/x86_64-gcc-9.2.0-nolibc-nios2-linux.tar.xz | tar -C /opt -xJ
+RUN wget -O - https://mirrors.edge.kernel.org/pub/tools/crosstool/files/bin/x86_64/9.2.0/x86_64-gcc-9.2.0-nolibc-powerpc-linux.tar.xz | tar -C /opt -xJ
+RUN wget -O - https://mirrors.edge.kernel.org/pub/tools/crosstool/files/bin/x86_64/9.2.0/x86_64-gcc-9.2.0-nolibc-riscv32-linux.tar.xz | tar -C /opt -xJ
+RUN wget -O - https://mirrors.edge.kernel.org/pub/tools/crosstool/files/bin/x86_64/9.2.0/x86_64-gcc-9.2.0-nolibc-riscv64-linux.tar.xz | tar -C /opt -xJ
+RUN wget -O - https://mirrors.edge.kernel.org/pub/tools/crosstool/files/bin/x86_64/9.2.0/x86_64-gcc-9.2.0-nolibc-sh2-linux.tar.xz | tar -C /opt -xJ
 
 # Manually install other toolchains
 RUN wget -O - https://github.com/foss-xtensa/toolchain/releases/download/2018.02/x86_64-2018.02-xtensa-dc233c-elf.tar.gz | tar -C /opt -xz
@@ -104,11 +104,11 @@ RUN git clone git://git.savannah.gnu.org/grub.git /tmp/grub && \
 	mkdir -p /opt/grub && \
 	./configure --target=aarch64 --with-platform=efi \
 	CC=gcc \
-	TARGET_CC=/opt/gcc-7.3.0-nolibc/aarch64-linux/bin/aarch64-linux-gcc \
-	TARGET_OBJCOPY=/opt/gcc-7.3.0-nolibc/aarch64-linux/bin/aarch64-linux-objcopy \
-	TARGET_STRIP=/opt/gcc-7.3.0-nolibc/aarch64-linux/bin/aarch64-linux-strip \
-	TARGET_NM=/opt/gcc-7.3.0-nolibc/aarch64-linux/bin/aarch64-linux-nm \
-	TARGET_RANLIB=/opt/gcc-7.3.0-nolibc/aarch64-linux/bin/aarch64-linux-ranlib && \
+	TARGET_CC=/opt/gcc-9.2.0-nolibc/aarch64-linux/bin/aarch64-linux-gcc \
+	TARGET_OBJCOPY=/opt/gcc-9.2.0-nolibc/aarch64-linux/bin/aarch64-linux-objcopy \
+	TARGET_STRIP=/opt/gcc-9.2.0-nolibc/aarch64-linux/bin/aarch64-linux-strip \
+	TARGET_NM=/opt/gcc-9.2.0-nolibc/aarch64-linux/bin/aarch64-linux-nm \
+	TARGET_RANLIB=/opt/gcc-9.2.0-nolibc/aarch64-linux/bin/aarch64-linux-ranlib && \
 	make && \
 	./grub-mkimage -O arm64-efi -o /opt/grub/grubaa64.efi --prefix= -d \
 	grub-core cat chain configfile echo efinet ext2 fat halt help linux \
@@ -118,11 +118,11 @@ RUN git clone git://git.savannah.gnu.org/grub.git /tmp/grub && \
 	make clean && \
 	./configure --target=arm --with-platform=efi \
 	CC=gcc \
-	TARGET_CC=/opt/gcc-7.3.0-nolibc/arm-linux-gnueabi/bin/arm-linux-gnueabi-gcc \
-	TARGET_OBJCOPY=/opt/gcc-7.3.0-nolibc/arm-linux-gnueabi/bin/arm-linux-gnueabi-objcopy \
-	TARGET_STRIP=/opt/gcc-7.3.0-nolibc/arm-linux-gnueabi/bin/arm-linux-gnueabi-strip \
-	TARGET_NM=/opt/gcc-7.3.0-nolibc/arm-linux-gnueabi/bin/arm-linux-gnueabi-nm \
-	TARGET_RANLIB=/opt/gcc-7.3.0-nolibc/arm-linux-gnueabi/bin/arm-linux-gnueabi-ranlib && \
+	TARGET_CC=/opt/gcc-9.2.0-nolibc/arm-linux-gnueabi/bin/arm-linux-gnueabi-gcc \
+	TARGET_OBJCOPY=/opt/gcc-9.2.0-nolibc/arm-linux-gnueabi/bin/arm-linux-gnueabi-objcopy \
+	TARGET_STRIP=/opt/gcc-9.2.0-nolibc/arm-linux-gnueabi/bin/arm-linux-gnueabi-strip \
+	TARGET_NM=/opt/gcc-9.2.0-nolibc/arm-linux-gnueabi/bin/arm-linux-gnueabi-nm \
+	TARGET_RANLIB=/opt/gcc-9.2.0-nolibc/arm-linux-gnueabi/bin/arm-linux-gnueabi-ranlib && \
 	make && \
 	./grub-mkimage -O arm-efi -o /opt/grub/grubarm.efi --prefix= -d \
 	grub-core cat chain configfile echo efinet ext2 fat halt help linux \
@@ -132,11 +132,11 @@ RUN git clone git://git.savannah.gnu.org/grub.git /tmp/grub && \
 	make clean && \
 	./configure --target=riscv64 --with-platform=efi \
 	CC=gcc \
-	TARGET_CC=/opt/gcc-7.3.0-nolibc/riscv64-linux/bin/riscv64-linux-gcc \
-	TARGET_OBJCOPY=/opt/gcc-7.3.0-nolibc/riscv64-linux/bin/riscv64-linux-objcopy \
-	TARGET_STRIP=/opt/gcc-7.3.0-nolibc/riscv64-linux/bin/riscv64-linux-strip \
-	TARGET_NM=/opt/gcc-7.3.0-nolibc/riscv64-linux/bin/riscv64-linux-nm \
-	TARGET_RANLIB=/opt/gcc-7.3.0-nolibc/riscv64-linux/bin/riscv64-linux-ranlib && \
+	TARGET_CC=/opt/gcc-9.2.0-nolibc/riscv64-linux/bin/riscv64-linux-gcc \
+	TARGET_OBJCOPY=/opt/gcc-9.2.0-nolibc/riscv64-linux/bin/riscv64-linux-objcopy \
+	TARGET_STRIP=/opt/gcc-9.2.0-nolibc/riscv64-linux/bin/riscv64-linux-strip \
+	TARGET_NM=/opt/gcc-9.2.0-nolibc/riscv64-linux/bin/riscv64-linux-nm \
+	TARGET_RANLIB=/opt/gcc-9.2.0-nolibc/riscv64-linux/bin/riscv64-linux-ranlib && \
 	make && \
 	./grub-mkimage -O riscv64-efi -o /opt/grub/grubriscv64.efi --prefix= -d \
 	grub-core cat chain configfile echo efinet ext2 fat halt help linux \
@@ -146,11 +146,11 @@ RUN git clone git://git.savannah.gnu.org/grub.git /tmp/grub && \
 	make clean && \
 	./configure --target=riscv32 --with-platform=efi \
 	CC=gcc \
-	TARGET_CC=/opt/gcc-7.3.0-nolibc/riscv32-linux/bin/riscv32-linux-gcc \
-	TARGET_OBJCOPY=/opt/gcc-7.3.0-nolibc/riscv32-linux/bin/riscv32-linux-objcopy \
-	TARGET_STRIP=/opt/gcc-7.3.0-nolibc/riscv32-linux/bin/riscv32-linux-strip \
-	TARGET_NM=/opt/gcc-7.3.0-nolibc/riscv32-linux/bin/riscv32-linux-nm \
-	TARGET_RANLIB=/opt/gcc-7.3.0-nolibc/riscv32-linux/bin/riscv32-linux-ranlib && \
+	TARGET_CC=/opt/gcc-9.2.0-nolibc/riscv32-linux/bin/riscv32-linux-gcc \
+	TARGET_OBJCOPY=/opt/gcc-9.2.0-nolibc/riscv32-linux/bin/riscv32-linux-objcopy \
+	TARGET_STRIP=/opt/gcc-9.2.0-nolibc/riscv32-linux/bin/riscv32-linux-strip \
+	TARGET_NM=/opt/gcc-9.2.0-nolibc/riscv32-linux/bin/riscv32-linux-nm \
+	TARGET_RANLIB=/opt/gcc-9.2.0-nolibc/riscv32-linux/bin/riscv32-linux-ranlib && \
 	make && \
 	./grub-mkimage -O riscv32-efi -o /opt/grub/grubriscv32.efi --prefix= -d \
 	grub-core cat chain configfile echo efinet ext2 fat halt help linux \
@@ -174,7 +174,7 @@ USER uboot:uboot
 
 # Create the buildman config file
 RUN /bin/echo -e "[toolchain]\nroot = /usr" > ~/.buildman
-RUN /bin/echo -e "kernelorg = /opt/gcc-7.3.0-nolibc/*" >> ~/.buildman
+RUN /bin/echo -e "kernelorg = /opt/gcc-9.2.0-nolibc/*" >> ~/.buildman
 RUN /bin/echo -e "arc = /opt/arc_gnu_2018.09_prebuilt_uclibc_le_archs_linux_install" >> ~/.buildman
 RUN /bin/echo -e "\n[toolchain-prefix]\nxtensa = /opt/2018.02/xtensa-dc233c-elf/bin/xtensa-dc233c-elf-" >> ~/.buildman;
 RUN /bin/echo -e "\nnds32 = /opt/nds32le-linux-glibc-v3-upstream/bin/nds32le-linux-" >> ~/.buildman;
