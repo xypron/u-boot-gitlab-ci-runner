@@ -29,7 +29,7 @@ RUN wget -O - https://mirrors.edge.kernel.org/pub/tools/crosstool/files/bin/x86_
 
 # Manually install other toolchains
 RUN wget -O - https://github.com/foss-xtensa/toolchain/releases/download/2018.02/x86_64-2018.02-xtensa-dc233c-elf.tar.gz | tar -C /opt -xz
-RUN wget -O - https://github.com/foss-for-synopsys-dwc-arc-processors/toolchain/releases/download/arc-2018.09-release/arc_gnu_2018.09_prebuilt_uclibc_le_archs_linux_install.tar.gz | tar -C /opt -xz
+RUN wget -O - https://github.com/foss-for-synopsys-dwc-arc-processors/toolchain/releases/download/arc-2019.09-release/arc_gnu_2019.09_prebuilt_uclibc_le_archs_linux_install.tar.gz | tar -C /opt -xz
 RUN wget -O - https://github.com/vincentzwc/prebuilt-nds32-toolchain/releases/download/20180521/nds32le-linux-glibc-v3-upstream.tar.gz | tar -C /opt -xz
 
 # Update and install things from apt now
@@ -177,7 +177,7 @@ USER uboot:uboot
 # Create the buildman config file
 RUN /bin/echo -e "[toolchain]\nroot = /usr" > ~/.buildman
 RUN /bin/echo -e "kernelorg = /opt/gcc-9.2.0-nolibc/*" >> ~/.buildman
-RUN /bin/echo -e "arc = /opt/arc_gnu_2018.09_prebuilt_uclibc_le_archs_linux_install" >> ~/.buildman
+RUN /bin/echo -e "arc = /opt/arc_gnu_2019.09_prebuilt_uclibc_le_archs_linux_install" >> ~/.buildman
 RUN /bin/echo -e "\n[toolchain-prefix]\nxtensa = /opt/2018.02/xtensa-dc233c-elf/bin/xtensa-dc233c-elf-" >> ~/.buildman;
 RUN /bin/echo -e "\nnds32 = /opt/nds32le-linux-glibc-v3-upstream/bin/nds32le-linux-" >> ~/.buildman;
 RUN /bin/echo -e "\n[toolchain-alias]\nsh = sh2" >> ~/.buildman
