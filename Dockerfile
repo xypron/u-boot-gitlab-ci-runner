@@ -2,7 +2,7 @@
 # This Dockerfile is used to build an image containing basic stuff to be used
 # to build U-Boot and run our test suites.
 
-FROM ubuntu:bionic-20200311
+FROM ubuntu:bionic-20200403
 MAINTAINER Tom Rini <trini@konsulko.com>
 LABEL Description=" This image is for building U-Boot inside a container"
 
@@ -47,6 +47,7 @@ RUN apt-get update && apt-get install -y \
 	device-tree-compiler \
 	dosfstools \
 	e2fsprogs \
+	fakeroot \
 	flex \
 	gdisk \
 	git \
@@ -68,6 +69,7 @@ RUN apt-get update && apt-get install -y \
 	lzma-alone \
 	lzop \
 	mount \
+	mtd-utils \
 	mtools \
 	openssl \
 	picocom \
