@@ -57,6 +57,7 @@ RUN apt-get update && apt-get install -y \
 	iasl \
 	imagemagick \
 	iputils-ping \
+	libguestfs-tools \
 	libisl15 \
 	liblz4-tool \
 	libpixman-1-dev \
