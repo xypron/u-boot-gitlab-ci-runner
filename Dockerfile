@@ -46,6 +46,7 @@ RUN apt-get update && apt-get install -y \
 	curl \
 	device-tree-compiler \
 	dosfstools \
+	efitools \
 	e2fsprogs \
 	fakeroot \
 	flex \
