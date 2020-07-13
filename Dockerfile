@@ -68,6 +68,7 @@ RUN apt-get update && apt-get install -y \
 	libssl-dev \
 	libudev-dev \
 	libusb-1.0-0-dev \
+	linux-image-kvm \
 	lzma-alone \
 	lzop \
 	mount \
@@ -93,6 +94,9 @@ RUN apt-get update && apt-get install -y \
 	virtualenv \
 	zip \
 	&& rm -rf /var/lib/apt/lists/*
+
+# libguestfs-tools runs the kernel via QEMU. Give normal users access.
+RUN chmod 644 /boot/vmlinu*
 
 # Manually install libmpfr4 for the toolchains
 RUN wget http://mirrors.kernel.org/ubuntu/pool/main/m/mpfr4/libmpfr4_3.1.4-1_amd64.deb && dpkg -i libmpfr4_3.1.4-1_amd64.deb && rm libmpfr4_3.1.4-1_amd64.deb
