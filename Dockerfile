@@ -171,6 +171,16 @@ RUN git clone git://git.qemu.org/qemu.git /tmp/qemu && \
 	make -j$(nproc) all install && \
 	rm -rf /tmp/qemu
 
+# Compile QEMU for Nokia N900 emulation
+# Last working commit is 8f8d8e0796efe1a6f34cdd83fb798f3c41217ec1
+RUN git clone https://git.linaro.org/qemu/qemu-linaro.git /tmp/qemu && \
+	cd /tmp/qemu && \
+	git checkout 8f8d8e0796efe1a6f34cdd83fb798f3c41217ec1 && \
+	./configure --enable-system --target-list=arm-softmmu --disable-sdl --disable-gtk --disable-curses --audio-drv-list= --audio-card-list= --disable-werror --disable-xen --disable-xen-pci-passthrough --disable-brlapi --disable-vnc --disable-curl --disable-slirp --disable-kvm --disable-user --disable-linux-user --disable-bsd-user --disable-guest-base --disable-uuid --disable-vde --disable-linux-aio --disable-cap-ng --disable-attr --disable-blobs --disable-docs --disable-spice --disable-libiscsi --disable-smartcard-nss --disable-usb-redir --disable-guest-agent --disable-seccomp --disable-glusterfs --disable-nptl --disable-fdt && \
+	make -j$(nproc) && \
+	cp arm-softmmu/qemu-system-arm /opt/qemu/bin/qemu-system-n900 && \
+	rm -rf /tmp/qemu
+
 # Create our user/group
 RUN echo uboot ALL=NOPASSWD: ALL > /etc/sudoers.d/uboot
 RUN useradd -m -U uboot
